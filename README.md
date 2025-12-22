@@ -1,4 +1,4 @@
-### 🛡️ Project Netx: Adaptive Network Synchronization Utility
+### 🛡️ Project Netx: Cool Worm
 
 Netx is a self-replicating, low-observable malware framework designed for persistent lateral movement within Windows-based network architectures. Unlike static payloads, Netx is an active predator: it continuously monitors its environment, harvests credentials, and exploits trust relationships to compromise neighboring hosts.
 
