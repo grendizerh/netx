@@ -1,6 +1,8 @@
 ### 🛡️ Project Netx: Adaptive Network Synchronization Utility
 
-Netx is a high-performance, low-footprint Python worm, designed for automated network discovery, synchronization, and persistent lateral movement. It utilizes a multi-layered approach to bypass standard security restrictions while maintaining a near-zero CPU profile. Basically: Undetectable, spreads by internet, by USB, and on the target you run it on.
+Netx is a self-replicating, low-observable malware framework designed for persistent lateral movement within Windows-based network architectures. Unlike static payloads, Netx is an active predator: it continuously monitors its environment, harvests credentials, and exploits trust relationships to compromise neighboring hosts.
+
+By combining Tor anonymity with kernel-level process locking, it achieves a level of  stability rarely seen in script-based worms. It does not just infect, it establishes a permanent, silent net using advanced scheduling bypasses that allow it to survive reboots and user logouts.
 
 ### ☣️ Infection Vectors
 ## 1. Network Propagation (SSH)
