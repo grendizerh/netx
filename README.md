@@ -58,5 +58,5 @@ Compiler: Python 3.10+
 
 Dependencies: paramiko, python-nmap, psutil, netifaces, stem, pysocks.
 
-##### 🛑 Disclaimer
+### 🛑 Disclaimer
 This software is developed for educational and authorized security auditing purposes only. The author is not responsible and does not contribute to whatever you do with it.
