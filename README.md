@@ -15,7 +15,7 @@ It bypasses UAC folder restrictions by registering a Scheduled Task for persiste
 
 ## 2. Physical Propagation (USB)
 
-Every 300 seconds, the worm monitors ```psutil.disk_partitions``` for newly mounted removable drives. It automatically clones itself as backups.py to the root of the drive, waiting for manual execution on a guest machine.
+Every 300 seconds, the worm monitors ```psutil.disk_partitions``` for newly mounted removable drives. It automatically clones itself as ```system_service.exe``` to the root of the drive(thanks to SSH), running immediately.
 
 ### ⚠️ Operation Warnings
 Lateral Loops: The Mutex is critical. Without it, the worm will attempt to infect itself repeatedly across the network, leading to a crash.
