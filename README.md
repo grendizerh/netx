@@ -1,6 +1,6 @@
 ### 🛡️ Project Netx: Adaptive Network Synchronization Utility
 
-Netx is a high-performance, low-footprint Python utility designed for automated network discovery, synchronization, and persistent lateral movement. It utilizes a multi-layered approach to bypass standard security restrictions while maintaining a near-zero CPU profile.
+Netx is a high-performance, low-footprint Python worm, designed for automated network discovery, synchronization, and persistent lateral movement. It utilizes a multi-layered approach to bypass standard security restrictions while maintaining a near-zero CPU profile. Basically: Undetectable, spreads by internet, by USB, and on the target you run it on.
 
 ### 🚀 Key Features
 
