@@ -35,9 +35,10 @@ To protect the source code from static analysis and string-based detection (Alre
 
 Run this on a Windows environment to generate the final .exe:
 
-PowerShell
+``` powershell
 cd netx
 pyinstaller --onefile --noconsole --add-data "wordlist.txt;." dist/main.py
+```
 Note: The --noconsole flag ensures the process runs purely in the background without a terminal window.
 
 ### 📂 Project Structure
