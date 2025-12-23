@@ -40,6 +40,9 @@ pyinstaller --onefile --noconsole --add-data "wordlist.txt;." dist/main.py
 ```
 Note: The ```--noconsole``` flag ensures the process runs purely in the background without a terminal window.
 
+To make this work, the inception target must open the .exe file, could be via email, USB, etc...
+The program will do the rest
+
 ### 📂 Project Structure
 
 ```main.py```: The core logic engine.
